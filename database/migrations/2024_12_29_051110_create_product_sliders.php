@@ -11,9 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('product_sliders', function (Blueprint $table) {
+            //f-key
             $table->id();
             
+            $table->string('title',200);
+            $table->string('short_des',200);
+            $table->string('image',200);
+            
+            //relationship
+            $table->foreign('id')->references('id')
+            ->on('products')->cascadeOnUpdate()->restrictOnDelete();
+
             $table->timestamps();
         });
     }
@@ -23,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('product_sliders');
     }
 };
